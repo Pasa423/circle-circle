@@ -2,8 +2,9 @@
 #include "raylib.h"
 using namespace std;
 #include <cmath>
-int circle(int x1=0, int y1=0, float t=0)
+int circle(int x1=0, int y1=0, float SpawnT=0,float t=0)
     {
+      t = t - SpawnT;
       float r1 = 100*sin(t);
       if (r1<0)
             {
@@ -20,7 +21,7 @@ int main()
     int a[10],b[10];
     int i,c = 0;
     bool p = false;
-    float t = 0;
+    float SpawnT[10],t = 0;
     while (!WindowShouldClose()) {
     Vector2 m = GetMousePosition();
     t=t+GetFrameTime();
@@ -29,6 +30,7 @@ int main()
           a[c]=m.x;
           b[c]=m.y;
           p = true;
+          SpawnT[c]=t;
           c++;
         }
         BeginDrawing();
@@ -37,7 +39,7 @@ int main()
         {
         if(p)
         {
-          circle(a[i],b[i],t);
+          circle(a[i],b[i],SpawnT[i],t);
         }
         }
 /*            float x2 = 200;
