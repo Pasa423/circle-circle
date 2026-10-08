@@ -24,11 +24,10 @@ int circle(float x1=0, float y1=0, float SpawnT=0,float t=0,int n=0)
     }
 int main()
 {
-    InitWindow(1000, 600, "Wavey");
+    InitWindow(1900, 1080, "Wavey");
     SetTargetFPS(60);
     float a[100],b[100];
     int i,c = 0;
-    bool p = false;
     float SpawnT[100],t = 0;
     while (!WindowShouldClose()) {
     Vector2 m = GetMousePosition();
@@ -37,7 +36,6 @@ int main()
         {
           a[c]=m.x;
           b[c]=m.y;
-          p = true;
           SpawnT[c]=t;
           c++;
         }
