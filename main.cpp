@@ -2,30 +2,34 @@
 #include "raylib.h"
 using namespace std;
 #include <cmath>
-int circle(int x1=0, int y1=0, float SpawnT=0,float t=0)
+int circle(float x1=0, float y1=0, float SpawnT=0,float t=0)
     {
       t = t - SpawnT;
-      float r1 = 100*sin(t);
-      if (r1<0)
+      float OuterR = 100*t;
+      float InnerR=OuterR - 5;
+      if (OuterR<0)
             {
-              r1=-r1;
+              OuterR=-OuterR;
             }
-            DrawCircle(x1, y1, r1, WHITE);
-            DrawCircle(x1,y1,r1-5, BLACK);
+      if(InnerR<0)
+      {
+        InnerR=-InnerR;
+      }
+            DrawRing({x1, y1},InnerR,OuterR,0,360,0,  WHITE);
             return 0;
     }
 int main()
 {
     InitWindow(1000, 600, "Wavey");
     SetTargetFPS(60);
-    int a[10],b[10];
+    float a[100],b[100];
     int i,c = 0;
     bool p = false;
-    float SpawnT[10],t = 0;
+    float SpawnT[100],t = 0;
     while (!WindowShouldClose()) {
     Vector2 m = GetMousePosition();
     t=t+GetFrameTime();
-        if(IsKeyPressed(KEY_SPACE)&&c<10)
+        if(IsKeyPressed(KEY_SPACE)&&c<100)
         {
           a[c]=m.x;
           b[c]=m.y;
