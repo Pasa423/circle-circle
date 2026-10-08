@@ -2,21 +2,25 @@
 #include "raylib.h"
 using namespace std;
 #include <cmath>
-int circle(float x1=0, float y1=0, float SpawnT=0,float t=0)
+int circle(float x1=0, float y1=0, float SpawnT=0,float t=0,int n=0)
     {
-      t = t - SpawnT;
-      float OuterR = 100*t;
-      float InnerR=OuterR - 5;
-      if (OuterR<0)
-            {
-              OuterR=-OuterR;
-            }
-      if(InnerR<0)
+        t = t - SpawnT;
+      for(int i=0;i<n;i++)
       {
-        InnerR=-InnerR;
+        float OuterR = 100*t-50*i;
+        float InnerR=OuterR - 5;
+        if (OuterR<0)
+            {
+              OuterR=0;
+            }
+        if(InnerR<0)
+        {
+          InnerR=0;
+        }
+            DrawRing({x1, y1},InnerR,OuterR,0,360,32,  WHITE);
       }
-            DrawRing({x1, y1},InnerR,OuterR,0,360,0,  WHITE);
-            return 0;
+    
+     return 0;
     }
 int main()
 {
@@ -43,7 +47,7 @@ int main()
         {
         if(p)
         {
-          circle(a[i],b[i],SpawnT[i],t);
+          circle(a[i],b[i],SpawnT[i],t,10);
         }
         }
 /*            float x2 = 200;
