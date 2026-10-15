@@ -9,6 +9,7 @@ int circle(float x1=0, float y1=0, float SpawnT=0,float t=0,int n=0)
       {
         float OuterR = 100*t-50*i;
         float InnerR=OuterR - 5;
+        Color WaveC = ColorFromHSV(OuterR,1,1);
         if (OuterR<0)
             {
               OuterR=0;
@@ -17,7 +18,7 @@ int circle(float x1=0, float y1=0, float SpawnT=0,float t=0,int n=0)
         {
           InnerR=0;
         }
-            DrawRing({x1, y1},InnerR,OuterR,0,360,32,  WHITE);
+            DrawRing({x1, y1},InnerR,OuterR,0,360,32,WaveC);
       }
     
      return 0;
@@ -29,6 +30,7 @@ int main()
     float a[100],b[100];
     int i,c = 0;
     float SpawnT[100],t = 0;
+    int NoOfRings=100;
     while (!WindowShouldClose()) {
     Vector2 m = GetMousePosition();
     t=t+GetFrameTime();
@@ -43,10 +45,7 @@ int main()
         ClearBackground(BLACK);
         for(i=0;i<c;i++)
         {
-        if(p)
-        {
-          circle(a[i],b[i],SpawnT[i],t,10);
-        }
+          circle(a[i],b[i],SpawnT[i],t,NoOfRings);
         }
 /*            float x2 = 200;
             float y2 = 400;
