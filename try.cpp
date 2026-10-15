@@ -6,6 +6,7 @@ int main()
   float prevTemp[100][100],nextTemp[100][100];
   int Rows, Columns,i,j,NoofIterrations;
   float sum =0;
+  int count =0;
   std::cout<<"write the length of the square"<<std::endl;
   std::cin>>Rows;
   Columns = Rows;
@@ -42,12 +43,14 @@ int main()
          {
           if(i+di>-1 && i+di<Rows && j+dj>-1 && j+dj<Columns )
           {
-            sum = sum + prevTemp[i+di][j+dj]; 
+            sum = sum + prevTemp[i+di][j+dj];
+            count++;
           }
          }
        }
-       nextTemp[i][j]= sum/9;
+       nextTemp[i][j]= sum/count;
        sum = 0;
+       count =0;
       }
     }
     for(i=0;i<Rows;i++)
@@ -57,6 +60,16 @@ int main()
         prevTemp[i][j]=nextTemp[i][j];
       }
     }
-  }
+    std::cout << "Temperature Grid of "<<k<<"iterations"<<std::endl;
 
+    for (i = 0; i < Rows; i++)
+    {
+        for (j = 0; j < Columns; j++)
+        {
+            std::cout << nextTemp[i][j] <<" ";
+        }
+    std::cout <<""<<std::endl;
+    }
+  }
+  return 0;
 }
