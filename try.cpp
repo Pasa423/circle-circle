@@ -3,16 +3,59 @@
 #include<vector>
 int main()
 {
-  float prevA[100][100], prevB[100][100], nextA[100][100],nextB[100][100];
-  int Rows, Columns,i,j;
+  float prevTemp[100][100],nextTemp[100][100];
+  int Rows, Columns,i,j,NoofIterrations;
+  float sum =0;
   std::cout<<"write the length of the square"<<std::endl;
   std::cin>>Rows;
   Columns = Rows;
+  std::cout<<"Write the no of iterations"<<std::endl;
+  std::cin>>NoofIterrations;
   for(i=0;i<Rows;i++)
   {
     for(j=0;j<Columns;j++)
     {
-      std::cout<<"write the value of ";
+      std::cout<<"write the value of Temp["<<i+1<<"]"<<"["<<j+1<<"]"<<std::endl;
+      std::cin>>prevTemp[i][j];
+    }
+  }
+  std::cout << "Temperature Grid:"<<std::endl;
+
+    for (i = 0; i < Rows; i++)
+    {
+        for (j = 0; j < Columns; j++)
+        {
+            std::cout << prevTemp[i][j] <<" ";
+        }
+        
+    std::cout <<""<<std::endl;
+    }
+  for(int k=0;k<NoofIterrations;k++)
+  {
+    for(i=0;i<Rows;i++)
+    {
+      for(j=0;j<Columns;j++)
+      {
+       for(int di=-1;di<2;di++)
+       {
+         for(int dj=-1;dj<2;dj++)
+         {
+          if(i+di>-1 && i+di<Rows && j+dj>-1 && j+dj<Columns )
+          {
+            sum = sum + prevTemp[i+di][j+dj]; 
+          }
+         }
+       }
+       nextTemp[i][j]= sum/9;
+       sum = 0;
+      }
+    }
+    for(i=0;i<Rows;i++)
+    {
+      for(j=0;j<Columns;j++)
+      {
+        prevTemp[i][j]=nextTemp[i][j];
+      }
     }
   }
 
